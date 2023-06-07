@@ -12,7 +12,7 @@ Pandas
 Tensorflow
 
 ## Installation
-Once the repository is cloned, go the the 'takneekps' directory
+Once the repository is cloned, go the the directory
 You can start the server using django command
 
 'python manage.py runserver' or 'python3 manage.py runserver' 

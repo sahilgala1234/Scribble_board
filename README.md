@@ -19,3 +19,4 @@ You can start the server using django command
 This will open the website locally on the default address '127.0.0.1:8000', however this may vary depending on the configuration
 
 On the homepage of server, click the link 'Try it now!' to open a new scribble canvas.
+![image](https://github.com/sahilgala1234/Scribble_board/assets/100221488/e60532b0-c1ea-44c7-a8f1-31f32ad008e5)

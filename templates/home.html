@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<head>
+    {% load static %}
+    <title>Scribble</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+      
+      body {
+          font-family: 'Delicious Handrawn', cursive;
+          margin: 0;
+          padding: 0;
+          background-color: rgb(193, 126, 255);
+        }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 20px;
+        margin: 20px auto;
+        max-width: 1200px;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-item-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        text-align: center;
+      }
+
+      .gallery-item-info h3 {
+        margin: 0;
+      }
+
+      .gallery-item-info p {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+    </style>    
+</head>
+<body>
+  <h1 style="text-align: center;font-size: 50px;color: white;font-weight: bold; width: 40%; margin: auto; margin-top: 20px;">
+    <a style="text-decoration: none;" href="{%url 'whiteboard'%}">Create new canvas</a>
+  </h1>
+  <div>
+    <h2 style="text-align: center;font-size: 40px;color: white; width: 40%; margin: auto; margin-top: 20px;">
+      Your saved drawings
+    </h2>
+
+    <!-- {% block content %}
+      <div class="gallery">
+        {% for image in images %}
+          <div class="gallery-item">
+            <img src="{{ image.image.url }}" alt="{{ image.title }} ">
+            <div class="gallery-item-info">
+              <h3>{{ image.title }}</h3>
+              <p>{{ image.description }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endblock %} -->
+    <div class="gallery">
+        <div class="gallery-item">
+          <img src="{%static 'images/brush.jpg'%}" alt="Image 1" data-filename="Image 1" onclick="downloadImg()">
+          <div class="gallery-item-info">
+            <h3>Image 1</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="{%static 'images/brush.jpg'%}" alt="Image 1" data-filename="Image 1" onclick="downloadImg()">
+          <div class="gallery-item-info">
+            <h3>Image 1</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="{%static 'images/brush.jpg'%}" alt="Image 1" data-filename="Image 1" onclick="downloadImg()">
+          <div class="gallery-item-info">
+            <h3>Image 1</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="{%static 'images/brush.jpg'%}" alt="Image 1" data-filename="Image 1" onclick="downloadImg()">
+          <div class="gallery-item-info">
+            <h3>Image 1</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="{%static 'images/brush.jpg'%}" alt="Image 1" data-filename="Image 1" onclick="downloadImg()">
+          <div class="gallery-item-info">
+            <h3>Image 1</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="{%static 'images/brush.jpg'%}" alt="Image 1" data-filename="Image 1" onclick="downloadImg()">
+          <div class="gallery-item-info">
+            <h3>Image 1</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="{%static 'images/brush.jpg'%}" alt="Image 1" data-filename="Image 1" onclick="downloadImg()">
+          <div class="gallery-item-info">
+            <h3>Image 1</h3>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="{%static 'images/brush.jpg'%}" alt="Image 1" data-filename="Image 1" onclick="downloadImg()">
+          <div class="gallery-item-info">
+            <h3>Image 1</h3>
+          </div>
+        </div>
+
+    </div>
+  </div>
+  <script>
+    // Add click event listener to all images in the gallery
+    const images = document.querySelectorAll('.gallery-item img');
+    images.forEach((image) => {
+      image.addEventListener('click', () => {
+        // Create a link element with the image source as its href attribute
+        const link = document.createElement('a');
+        link.href = image.src;
+
+        // Set the download attribute to the filename specified in the data-filename attribute
+        const filename = image.dataset.filename;
+        link.setAttribute('download', filename);
+
+        // Simulate a click on the link to trigger the download
+        link.click();
+      });
+    });
+  </script>
+</body>
+</html>

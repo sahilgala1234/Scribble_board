@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+    {% load static %}
+    <title>Scribble</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+      
+      body {
+          font-family: 'Delicious Handrawn', cursive;
+          margin: 0;
+          padding: 0;
+        }
+        html{
+          background-color: rgb(193, 126, 255) ;
+
+        }
+        .container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+        }
+        .link{
+          color: white;
+          font-size: 30px;
+          display: block;
+          margin: 10%;
+          width: 20%;
+          background-color: rgb(101, 0, 196);
+          text-decoration: none;
+          border: 1pt solid blueviolet;
+          border-radius: 10px;
+          text-align: center;
+          padding: 15px;
+          cursor: pointer;
+        }
+        .link:hover{
+          background-color: rgb(65, 1, 125);
+        }
+    </style>    
+</head>
+<body>
+  <h1 style="text-align: center;font-size: 50px;color: white;font-weight: bold;">
+    Scribble!
+  </h1>
+  <div class="container">
+      <a class="link" href="{%url 'register'%}">Register</a>
+      <a class="link" href="{%url 'login'%}">Login</a>
+      <a class="link" href="{%url 'whiteboard'%}">Try it now!</a>
+      <!-- <a href="{%url 'whiteboard' %}" style="margin: auto;color: white;text-align: center;">Create New whiteboard</a>  -->
+  </div>
+</body>
+</html>

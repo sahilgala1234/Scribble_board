@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<head>
+    {% load static %}
+    <title>Scribble</title>
+    <link rel="stylesheet" href = "{%static 'css/style.css'%}" >
+</head>
+<body>
+<!-- left side -->
+<div data-lefticons>
+  <a data-tools="zoom" title="Pan/Zoom Tool">
+    <img src="{%static 'images/search_icon.png'%}">
+  </a>
+  <a data-tools="select" title="Select">
+    <img src="{%static 'icons/select.png'%}">
+  </a>
+  <a data-tools="autopen" title="Autocomplete Pencil">
+    <img src="{%static 'images/autopen.webp'%}">
+  </a>
+  <a data-tools="pencil" title="Pencil">
+    <img src="{%static 'images/pen.png'%}">
+  </a>
+  <a data-tools="brush" title="Brush">
+    <img src="{%static 'icons/brush.png'%}">
+  </a>
+  <a data-tools="eraser" title="Eraser">
+    <img src="{%static 'icons/eraser.png'%}">
+  </a>
+  <a data-tools="splatter" title="Splatter">
+    <img src="{%static 'images/spray.png'%}">
+  </a>
+  <a data-tools="spray" title="Spray">
+    <img src="{%static 'images/spray-b.png'%}">
+  </a>
+  <a data-tools="fill" title="Fill">
+    <img src="{%static 'images/bucket.png'%}">
+  </a>
+</div>
+
+<!-- right side -->
+<div data-righticons>
+  <a data-tools="rect" title="Rect">
+    <img src="{%static 'images/rect.png'%}">
+  </a>
+  <a data-tools="ellipse" title="Ellipse">
+    <img src="{%static 'images/ellipse.png'%}">
+  </a>
+  <a data-tools="line" title="Line">
+    <img src="{%static 'images/slant.png'%}">
+  </a>
+  <a data-tools="triangle" title="Triangle">
+    <img src="{%static 'images/triangle.png'%}">
+  </a>
+</div>
+
+<!-- main menu -->
+<div data-topmenu>
+  <div data-mainmenu>
+    <span>
+      <h1 data-projectname><div contenteditable="true">My Project</div></h1>
+    </span>
+
+    <span data-menubuttons>
+      <button onclick="exportJSON()">SAVE</button>
+    </span>
+  </div>
+  <div data-toolsmenu style="display: none;">
+    <div data-toolsoption="zoom">
+      <span>
+        <h1 data-projectname>My Project</h1>
+      </span>
+
+      <span data-menubuttons>
+        <button onclick="exportJSON()">SAVE</button>
+
+        <a data-resetzoompos title="Reset Default Size">
+          <img src="{%static 'images/rect.png'%}">
+        </a>
+      </span>
+    </div>
+
+    <div data-toolsoption="eyedropper"></div>
+    <div data-toolsoption="select">
+      <a data-forselect onclick="group()">
+        <img src="{%static 'images/group.svg'%}">
+      </a>
+      <a data-forselect onclick="duplicate()">
+        <img src="{%static 'images/duplicate.svg'%}">
+      </a>
+      <a data-forselect onclick="remove()">
+        <img src="{%static 'images/trash.svg'%}">
+      </a>
+      <a data-selectortool="ungroup" onclick="ungroup()" style="display: none;">
+        <img src="{%static 'images/ungroup.svg'%}">
+      </a>
+      <a data-forselect onclick="alignLeft()">
+        <img src="{%static 'images/alignleft.png'%}">
+      </a>
+      <a data-forselect onclick="alignCenter()">
+        <img src="{%static 'images/aligncenter.png'%}">
+      </a>
+      <a data-forselect onclick="alignRight()">
+        <img src="{%static 'images/alignright.png'%}">
+      </a>
+      <a data-forselect onclick="alignTop()">
+        <img src="{%static 'images/aligntop.webp'%}">
+      </a>
+      <a data-forselect onclick="alignMiddle()">
+        <img src="{%static 'images/alignmiddle.webp'%}">
+      </a>
+      <a data-forselect onclick="alignBottom()">
+        <img src="{%static 'images/alignbottom.png'%}">
+      </a>
+      <a data-forselect onclick="flipH()">
+        <img src="{%static 'images/fliph.svg'%}">
+      </a>
+      <a  data-forselect onclick="flipV()">
+        <img src="{%static 'images/flipv.svg'%}">
+      </a>
+      <a data-forselect onclick="rotateCCW()">
+        <img src="{%static 'images/rotateCCW.svg'%}">
+      </a>
+      <a data-forselect onclick="rotateCW()">
+        <img src="{%static 'images/rotatecw.svg'%}">
+      </a>
+      <a data-forselect onclick="sendBackwards()">
+        <img src="{%static 'images/sendbackward.svg'%}">
+      </a>
+      <a data-forselect onclick="sendForward()">
+        <img src="{%static 'images/sendforward.svg'%}">
+      </a>
+    </div>
+    <div data-toolsoption="pencil"></div>
+    <div data-toolsoption="brush"></div>
+    <div data-toolsoption="lasso"></div>
+    <div data-toolsoption="rect"></div>
+    <div data-toolsoption="ellipse"></div>
+    <div data-toolsoption="line"></div>
+    <div data-toolsoption="triangle"></div>
+    <div data-toolsoption="splatter"></div>
+    <div data-toolsoption="spray"></div>
+    <div data-toolsoption="eraser"></div>
+    <div data-toolsoption="fill"></div>
+    
+    
+  </div>
+</div>
+
+<!-- canvas -->
+<div class="dialog" data-canvasbg>
+  <div data-canvas>
+    <canvas id="canvas" width="1280" height="800"></canvas>
+  </div>
+</div>
+
+<!-- dialogs -->
+<div data-dialogs>
+  <div class="dialog colorpicker" data-dialog="colorpicker">
+    <div class="fill-pickr pickr"></div>
+    <div class="stroke-pickr pickr"></div>
+  </div>
+  <div class="dialog" data-dialog="play"></div>
+</div>
+
+<!-- bottom menu -->
+<div data-bottommenu>
+  <span>
+    <a data-undo title="Undo" onclick="undo()">
+      <img src="{%static 'images/redo.png'%}">
+    </a>
+    <a data-export="pngframe" title="Export Frame As PNG" onclick="downloadPNGWithFilters()">
+      <img src="{%static 'images/image.png'%}">
+    </a>
+    <a data-export="svgframe" title="Export Frame As SVG" onclick="downloadSVGWithFilters()">
+      <img src="{%static 'images/code.png'%}">
+    </a>
+
+  </span>
+
+  <div id="brush-toolbar">
+    Ink Color:
+    <input type="color" id="inkColor" onchange="openToolsMenu(document.getElementById('h-active-tool').innerHTML.toString())"
+      style="border: none; background: none; width: 50px; height: 35px;"
+    >
+      <span style="width: 100px;display: inline-block;"></span>
+      <div data-toolsoption="brushsize" style="display: inline-block;">
+        Line Cap: 
+        <select id="brushStrokeCap">
+          <option value="round" selected>round</option>
+          <option value="square">square</option>
+          <option value="butt">butt</option>
+        </select>
+        <span style="width: 100px;display: inline-block;"></span>
+        <select id="brushStrokeLineJoin" style="display: none;">
+          <option value="bevel">bevel</option>
+          <option value="round" selected>round</option>
+          <option value="miter">miter</option>
+        </select>
+        <input id="brushMiter" type="number" class="numinhead" min="1" value="1" step="1" style="display: none;">
+        Thickness: <input id="brushSize" type="range" class="numinhead" min="1" value="20" max="60" step="1">
+      </div>
+  
+  </div>
+
+  <span>
+    <a data-redo title="Redo" onclick="redo()">
+      <img src="{%static 'images/redo-bot.png'%}">
+    </a>
+  </span>
+</div>
+
+<div style="display: none;">
+  <div id="h-active-tool"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.js" integrity="sha512-hOJ0mwaJavqi11j0XoBN1PtOJ3ykPdP6lp9n29WVVVVZxgx9LO7kMwyyhaznGJ+kbZrDN1jFZMt2G9bxkOHWFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script src="{%static 'js/eraser_brush.mixin.js'%}"></script>
+<script src="{%static 'js/panzoom.mod.js'%}"></script>
+<script src="{% static 'js/flood.js' %}"></script>
+
+<script>
+  // define an array to hold the SVG URLs
+  const svgUrls = [
+    {label:"circle", svg:"{% static 'shapes/circle.svg' %}"},
+    {label:"like", svg:"{% static 'shapes/like.svg' %}"},
+    {label:"moon", svg:"{% static 'shapes/moon.svg' %}"},
+    {label:"diamond", svg:"{% static 'shapes/diamond.svg' %}"},
+    {label:"hand", svg:"{% static 'shapes/hand.svg' %}"},
+    {label:"heart", svg:"{% static 'shapes/heart.svg' %}"},
+    {label:"leaf", svg:"{% static 'shapes/leaf.svg' %}"},
+    {label:"square", svg:"{% static 'shapes/square.svg' %}"},
+    {label:"triangle", svg:"{% static 'shapes/triangle.svg' %}"},
+  ];
+</script>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

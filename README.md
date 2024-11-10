@@ -1,5 +1,5 @@
 # Scribble_board
-A Scribble board implemented that allows freehand scribbling and plenty of other features.It uses fabric.js library and provides a powerful declarative and event driven API for manipulating and animating canvas elements.
+A Scribble board implemented that allows freehand scribbling and plenty of other features.It uses fabric.js library and provides a powerful declarative and event driven API for manipulating and animating canvas elements. It incorporates shape auto completion feature using PointNet-powerful deep neural architecture and trained auto completion models.
 ## Installation
 Clone the repository
 git clone https://github.com/sahilgala1234/Scribble_board
